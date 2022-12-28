@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+    {%block content%}
+
+      <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="../static/ferrari458.jpeg" class="d-block carousel" alt="..." width="60%" height="30%" style="margin:auto;">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Ferrari 458 Speciale</h5>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="../static/bmw5.webp" class="d-block carousel" alt="..." width="60%" height="30%" style="margin:auto;">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>BMW 545e</h5>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="../static/jeep.jpeg" class="d-block carousel" alt="..." width="60%" height="30%" style="margin:auto;">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Jeep Wrangler</h5>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <p>{% lorem 3 p random %}</p>
+
+<hr>
+<p>ALL CARS AVAILABLE</p> 
+<hr>
+<div id="all">
+      {% for car in cars %}
+      <div class="row">
+      <div class="col-md-4">
+        <div class="card listing-preview">
+          <img class="card-img-top" src="{{car.car_image}}"alt="">
+            <h2>
+              <span class="badge badge-secondary text-dark"></span>
+            </h2>
+          <div class="card-body">
+            <div class="listing-heading text-center">
+              <h4 class="text-primary">{{car.car_brand}} {{car.car_model}}</h4>
+              <p>
+                <i class="fas fa-map-marker text-secondary"></i></p>
+            </div>
+            <hr>
+            <div class="row py-2 text-secondary">
+              <div class="col-6">
+                <i class="fas fa-th-large"></i> {{car.car_brand}} {{car.car_model}}</div>
+              <div class="col-6">
+                <i class="fas fa-car"></i> Year: {{car.year}}</div>
+            </div>
+            <div class="row py-2 text-secondary">
+              <div class="col-6">
+                <i class="fas fa-bed"></i> Price: {{car.price}}</div>
+              <div class="col-6">
+                <i class="fas fa-bath"></i> Number of seats: {{car.size}}</div>
+            </div>
+            <hr>
+            <a href="{% url 'rent' pk=car.id %}" class="btn btn-primary btn-block">Rent Now</a>
+          </div>
+        </div>
+      </div>
+    </div> 
+      {% endfor %}
+</div>
+    {%endblock content%} 

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+{{cars.id}}
+
+<form method="POST" action="" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    {{form.as_p}}
+    
+    <button type="submit">confirm</button>
+</form>
+
+<div class="card" style="width: 18rem;">
+    <div class="card-header">
+        {{cars.car_brand}} {{cars.car_model}}
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Seats:{{cars.size}}</li>
+      <li class="list-group-item">Year: {{cars.year}}</li>
+      <li class="list-group-item">Price: {{cars.price}}</li>
+    </ul>
+  </div>
+
+<img class="card-img-top" src="{{cars.car_image}}"alt="">
+
+{% endblock content %}

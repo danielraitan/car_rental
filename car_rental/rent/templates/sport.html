@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
     {%block content%}
 
-      {% for car in cars %}
+    <div class="container ">
+        <div class="row">
 
-      {% if car.type == 'Sport' %}
-      <div class="row">
-      <div class="col-md-4" style="margin:2px;">
+    {% for car in cars %}
+    {% if car.type == 'Sport' %}
+
+      <div class="col-md-4">
         <div class="card listing-preview">
           <img class="card-img-top" src="{{car.car_image}}"alt="">
             <h2>
@@ -13,7 +15,7 @@
             </h2>
           <div class="card-body">
             <div class="listing-heading text-center">
-              <h4 class="text-primary">{{car.car_brand}} {{car.car_model}}</h4>
+              <h4 class="text-secondary">{{car.car_brand}} {{car.car_model}}</h4>
               <p>
                 <i class="fas fa-map-marker text-secondary"></i></p>
             </div>
@@ -31,13 +33,15 @@
                 <i class="fas fa-bath"></i> Number of seats: {{car.size}}</div>
             </div>
             <hr>
-            <a href="{% url 'rent' pk=car.id %}" class="btn btn-primary btn-block">Make an appointment</a>
+            <a href="{% url 'rent' pk=car.id %}" class="btn btn-dark btn-block">Make an appointment</a>
           </div>
         </div>
       </div>
-    </div> 
-      {% endif %}
+    
+    {% endif %}
+    {% endfor %}
 
-      {% endfor %}
+        </div>
+    </div>
    
     {%endblock content%}

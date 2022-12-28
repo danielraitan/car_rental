@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
     {%block content%}
-
       <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -37,45 +36,52 @@
         </button>
       </div>
 
-      <p>{% lorem 3 p random %}</p>
+      {% comment %} <p>{% lorem 3 p random %}</p> {% endcomment %}
 
 <hr>
-<p>ALL CARS AVAILABLE</p> 
+<p id="all_cars">ALL CARS AVAILABLE</p> 
 <hr>
-<div id="all">
-      {% for car in cars %}
-      <div class="row">
-      <div class="col-md-4">
-        <div class="card listing-preview">
-          <img class="card-img-top" src="{{car.car_image}}"alt="">
-            <h2>
-              <span class="badge badge-secondary text-dark"></span>
-            </h2>
-          <div class="card-body">
-            <div class="listing-heading text-center">
-              <h4 class="text-primary">{{car.car_brand}} {{car.car_model}}</h4>
-              <p>
-                <i class="fas fa-map-marker text-secondary"></i></p>
-            </div>
-            <hr>
-            <div class="row py-2 text-secondary">
-              <div class="col-6">
-                <i class="fas fa-th-large"></i> {{car.car_brand}} {{car.car_model}}</div>
-              <div class="col-6">
-                <i class="fas fa-car"></i> Year: {{car.year}}</div>
-            </div>
-            <div class="row py-2 text-secondary">
-              <div class="col-6">
-                <i class="fas fa-bed"></i> Price: {{car.price}}</div>
-              <div class="col-6">
-                <i class="fas fa-bath"></i> Number of seats: {{car.size}}</div>
-            </div>
-            <hr>
-            <a href="{% url 'rent' pk=car.id %}" class="btn btn-primary btn-block">Rent Now</a>
-          </div>
+
+
+<div class="container">
+    <div class="row">
+
+{% for car in cars %}
+
+  <div class="col-md-4">
+    <div class="card listing-preview">
+      <img class="card-img-top" src="{{car.car_image}}"alt="">
+        <h2>
+          <span class="badge badge-secondary text-dark"></span>
+        </h2>
+      <div class="card-body">
+        <div class="listing-heading text-center">
+          <h4 class="text-secondary">{{car.car_brand}} {{car.car_model}}</h4>
+          <p>
+            <i class="fas fa-map-marker text-secondary"></i></p>
         </div>
+        <hr>
+        <div class="row py-2 text-secondary">
+          <div class="col-6">
+            <i class="fas fa-th-large"></i> {{car.car_brand}} {{car.car_model}}</div>
+          <div class="col-6">
+            <i class="fas fa-car"></i> Year: {{car.year}}</div>
+        </div>
+        <div class="row py-2 text-secondary">
+          <div class="col-6">
+            <i class="fas fa-bed"></i> Price: {{car.price}}</div>
+          <div class="col-6">
+            <i class="fas fa-bath"></i> Number of seats: {{car.size}}</div>
+        </div>
+        <hr>
+        <a href="{% url 'rent' pk=car.id %}" class="btn btn-dark btn-block">Make an appointment</a>
       </div>
-    </div> 
-      {% endfor %}
+    </div>
+  </div>
+
+{% endfor %}
+
+    </div>
 </div>
-    {%endblock content%} 
+
+{% endblock content %}

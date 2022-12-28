@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from .forms import RentCarForm, UploadForm
-from .models import CarInfo, Customer
+from .forms import UploadForm
+from .models import CarInfo
+
 # Create your views here.
 
 def homepage(request):

@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,9 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-3s_d%9zsunz(hyp%(_s^qo0e$6njhs6e&7j&qkrwqe8*sx@y4j'
-
+SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEGUG')
 
 ALLOWED_HOSTS = []
 
@@ -39,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rent',
+    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'car_rental.urls'
@@ -78,9 +84,9 @@ WSGI_APPLICATION = 'car_rental.wsgi.application'
 DATABASES = {
             'default': {
                 'ENGINE': 'django.db.backends.postgresql',
-                'NAME': 'car_rental',
-                'USER': 'postgres',
-                'PASSWORD': '123456789',
+                'NAME': env('DATABASE_NAME'),
+                'USER': env('DATABASE_USER'),
+                'PASSWORD': env('DATABASE_PASS'),
                 'HOST': 'localhost',
                 'PORT': '5432',
             }
@@ -128,7 +134,16 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static/'),
 ]
 
+STATIC_ROOT  = 'static_root'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+env = environ.Env(
+            # set casting, default value
+            DEBUG=(bool, False)
+        )
+
+environ.Env.read_env(os.path.join(BASE_DIR, '.env')) 

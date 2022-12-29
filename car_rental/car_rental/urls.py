@@ -16,13 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rent.views import homepage, sport, suv, exotic, sedan, rent
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('homepage/', homepage, name='homepage'),
+    path('', homepage, name='homepage'),
     path('homepage/sport/', sport, name='sport'), 
     path('homepage/suv', suv, name='suv'),
     path('homepage/exotic', exotic, name='exotic'),
     path('homepage/sedan', sedan, name='sedan'),
     path('homepage/rent/<int:pk>', rent, name='rent'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)

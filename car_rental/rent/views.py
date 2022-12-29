@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import UploadForm
 from .models import CarInfo
+from django.core.mail import send_mail
 
 # Create your views here.
 
@@ -57,6 +58,7 @@ def rent(request, pk):
     if request.method=='POST':
         form = UploadForm(request.POST, request.FILES)
         print(request.FILES)
+        
         if form.is_valid():
             form.save()
         else:

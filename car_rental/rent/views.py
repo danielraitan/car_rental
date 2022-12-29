@@ -12,7 +12,7 @@ def homepage(request):
         'cars': cars
     }
 
-    return render(request, 'homepage.html', context)
+    return render(request, 'index.html', context)
 
 def sport(request):
     cars = CarInfo.objects.all()

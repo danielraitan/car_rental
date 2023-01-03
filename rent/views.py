@@ -63,7 +63,7 @@ def rent(request, pk):
             form.save()
         else:
             print(form.errors)
-        return redirect(homepage) + 'tha'
+        return redirect(homepage) 
     
         
     return render(request, 'rent.html', context)

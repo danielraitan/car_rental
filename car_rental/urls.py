@@ -14,8 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from rent.views import homepage, sport, suv, exotic, sedan, rent
+from django.urls import path
+from rent.views import homepage, sport, suv, exotic, sedan, rent, sell
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -27,6 +27,7 @@ urlpatterns = [
     path('homepage/exotic', exotic, name='exotic'),
     path('homepage/sedan', sedan, name='sedan'),
     path('homepage/rent/<int:pk>', rent, name='rent'),
+    path('homepage/sell', sell, name='sell'),
 ]
 
 if settings.DEBUG:

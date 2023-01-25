@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import UploadForm
+from .forms import UploadForm, RentCarForm
 from .models import CarInfo
 from django.core.mail import send_mail
 
@@ -64,6 +64,28 @@ def rent(request, pk):
         else:
             print(form.errors)
         return redirect(homepage) 
-    
-        
+      
     return render(request, 'rent.html', context)
+
+def sell(request):
+    
+    form = RentCarForm()
+    form2 = UploadForm()
+
+    context = {
+      'form': form, 'form2': form2
+    }
+    
+    if request.method=='POST':
+        form = RentCarForm(request.POST, request.FILES)
+        form2 = UploadForm(request.POST, request.FILES)
+        print(request.FILES)
+        
+        if form.is_valid() and form2.is_valid():
+            form.save()
+            form2.save()
+        else:
+            print(form.errors)
+        return redirect(homepage) 
+       
+    return render(request, 'sell.html', context)

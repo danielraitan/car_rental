@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="containerz">
+{% comment %} <div class="containerz">
     <img class="card-img-top" src="{{cars.car_image}}"alt="">
     <div class="top-left">
 <form method="POST" action="" enctype="multipart/form-data">
@@ -26,9 +26,49 @@
         </ul>
       </div>
       </div>
-</div>
+</div> {% endcomment %}
 
 
+    
+    
+
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-lg-8 col-md-12 m-2">
+            <img class="card-img-top sellImage" src="{{cars.car_image}}"alt="car image">
+        </div>
+
+        <div class="col-lg-3 col-md-12 m-2">
+            <div class="card text-center" style="width: 18rem;">
+                <div class="card-header">
+                    {{cars.car_brand}} {{cars.car_model}}
+                </div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">Seats:{{cars.size}}</li>
+                      <li class="list-group-item">Year: {{cars.year}}</li>
+                      <li class="list-group-item">Price: {{cars.price}}</li>
+                    </ul>
+            </div>
+        </div>
+        
+        <hr>
+            <div class="col-lg-12 p-4" style=" background:grey;">
+                <div class="">
+                    <form style="width: 100%;" method="POST" action="" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <h6>Personal info</h6>
+                        {{form.as_p}}
+                        
+                        <button onclick="myFunction()" type="submit" class="btn btn-light">confirm</button>
+                    </form>
+            </div> 
+            </div>
+            
+        </div>
+    </div>
+  </div>
 
 
 

@@ -15,10 +15,13 @@
                 <form style="width: 100%;" method="POST" action="" enctype="multipart/form-data">
     
                     {% csrf_token %}
+                    <hr>
                     <h6>Personal info</h6>
+                    <hr>
                     {{form2.as_p}}
                     <hr>
                     <h6>Car info</h6>
+                    <hr>
                     {{form.as_p}}
                     
                     <button onclick="myFunction2()" type="submit" class="btn btn-light">confirm</button>

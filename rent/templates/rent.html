@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load humanize %}
 {% block content %}
 
 {% comment %} <div class="containerz">
@@ -48,7 +49,7 @@
                     <ul class="list-group list-group-flush">
                       <li class="list-group-item">Seats:{{cars.size}}</li>
                       <li class="list-group-item">Year: {{cars.year}}</li>
-                      <li class="list-group-item">Price: {{cars.price}}</li>
+                      <li class="list-group-item">Price: {{cars.price|intcomma}}$</li>
                     </ul>
             </div>
         </div>

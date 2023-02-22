@@ -55,15 +55,48 @@
         </div>
         
             <div class="col-lg-12 p-3" style=" background:grey;">
-                <div class="">
+                <div class="p-2">
+                        <hr>
+                        <h4>Personal info</h4>
+                        <hr>
                     <form style="width: 100%;" method="POST" action="" enctype="multipart/form-data">
                         {% csrf_token %}
-                        <hr>
-                        <h6>Personal info</h6>
-                        <hr>
-                        {{form.as_p}}
-                        
-                        <button onclick="myFunction()" type="submit" class="btn btn-light">confirm</button>
+                    {% comment %} <div class="col-md-4"> {% endcomment %}
+
+                        <div class="form-group">
+                            <h6>First name:</h6>
+                            {{ form.first_name }}
+                        </div>
+                        <div class="form-group">
+                            <h6>Last name:</h6>
+                            {{ form.last_name }}
+                        </div>
+                        <div class="form-group">
+                            <h6>Phone:</h6>
+                            {{ form.phone }}
+                        </div>
+                        <div class="form-group">
+                            <h6>Email:</h6>
+                            {{ form.email }}
+                        </div>
+                        <div class="form-group">
+                            <h6>Address:</h6>
+                            {{ form.address }}
+                        </div>
+                        <div class="form-group">
+                            <h6>City:</h6>
+                            {{ form.city }}
+                        </div>
+                        <div class="form-group">
+                            <h6>Country:</h6>
+                            {{ form.country }}
+                        </div>
+
+                        <div class="p-2 text-center">
+                            <button onclick="myFunction()" type="submit" class="btn btn-light">confirm</button>
+                        </div>
+                    </div>
+        
                     </form>
             </div> 
             </div>
